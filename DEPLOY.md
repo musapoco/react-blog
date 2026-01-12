@@ -1,6 +1,6 @@
 # Cloudflare Pages デプロイガイド
 
-このプロジェクトを Cloudflare Pages でデプロイする手順です。
+このプロジェクトは OpenNextアダプターを使用して Cloudflare Pages にデプロイします。
 
 ## デプロイ方法
 
@@ -18,22 +18,17 @@
 
 3. **ビルド設定**
 
-   - **Framework preset**: None（または Next.js を選択した場合は上書き）
+   - **Framework preset**: None
    - **Build command**: `npm run build:cloudflare`
-   - **Build output directory**: `.vercel/output/static`（または空欄のまま）
+   - **Build output directory**: `.open-next/cloudflare`
    - **Root directory**: `/`（デフォルト）
-   - **Deploy command**: （空欄のまま、または削除）
-
-   ⚠️ **重要**: `@cloudflare/next-on-pages`は非推奨になりましたが、現在は動作します。
-   将来的には OpenNext adapter への移行を検討してください。
 
 4. **互換性フラグの設定（重要）**
 
    - 「Settings」→「Runtime」→「Compatibility flags」を開く
-   - 「Select...」フィールドをクリック
-   - `nodejs_compat` を追加（または `nodejs_compat_populate_process_env` を試す）
+   - `nodejs_compat` または `nodejs_compat_populate_process_env` を追加
    - 「Save」をクリック
-   - ⚠️ **重要**: Next.js 16.x を使用している場合、このフラグは必須です
+   - ⚠️ **重要**: Next.js 16.x を使用している場合、このフラグは推奨です
 
 5. **環境変数（必要な場合）**
 
@@ -55,12 +50,12 @@ wrangler login
 npm run build:cloudflare
 
 # デプロイ
-npx wrangler pages deploy .vercel/output/static
+npx wrangler pages deploy .open-next/cloudflare --project-name=your-project-name
 ```
 
 ## ビルドコマンドの説明
 
-- `npm run build:cloudflare`: Next.js をビルドし、Cloudflare Pages 用に変換します
+- `npm run build:cloudflare`: OpenNextアダプターを使用して Next.js アプリを Cloudflare Pages 用にビルドします
 
 ## 注意事項
 
@@ -86,5 +81,13 @@ npx wrangler pages deploy .vercel/output/static
 
 ### デプロイ後、ページが表示されない場合
 
-- ビルド出力ディレクトリが正しいか確認（`.vercel/output/static`）
+- ビルド出力ディレクトリが正しいか確認（`.open-next/cloudflare`）
 - Cloudflare Dashboard のビルドログを確認
+- 互換性フラグが正しく設定されているか確認
+
+## OpenNextアダプターについて
+
+このプロジェクトは `@opennextjs/cloudflare` を使用しています。これは `@cloudflare/next-on-pages` の後継として推奨されています。
+
+- **設定ファイル**: `open-next.config.ts`
+- **ビルド出力**: `.open-next/cloudflare`
