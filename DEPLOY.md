@@ -22,8 +22,8 @@
    - **Build command**: `npm run build:cloudflare`
    - **Build output directory**: （空欄のまま、または`.open-next`を指定）
    - **Root directory**: `/`（デフォルト）
-   
-   ⚠️ **注意**: OpenNextアダプターを使用する場合、ビルド出力ディレクトリは空欄のままにするか、`.open-next`を指定してください。Cloudflare Pagesが自動的に検出します。
+
+   ⚠️ **注意**: OpenNext アダプターを使用する場合、ビルド出力ディレクトリは空欄のままにするか、`.open-next`を指定してください。Cloudflare Pages が自動的に検出します。
 
 4. **互換性フラグの設定（重要）**
 
