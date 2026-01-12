@@ -109,7 +109,7 @@ export default function HomePage() {
       <section
         className="relative px-4 py-24 sm:px-6 lg:px-8"
         style={{
-          backgroundImage: 'url("/Hero Section.png")',
+          backgroundImage: 'url("/hero-section.png")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
