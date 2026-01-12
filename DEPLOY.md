@@ -18,12 +18,10 @@
 
 3. **ビルド設定**
 
-   - **Framework preset**: None
+   - **Framework preset**: None（または Next.js を選択した場合は上書き）
    - **Build command**: `npm run build:cloudflare`
-   - **Build output directory**: （空欄のまま、または`.open-next`を指定）
+   - **Build output directory**: `.vercel/output/static`
    - **Root directory**: `/`（デフォルト）
-
-   ⚠️ **注意**: OpenNext アダプターを使用する場合、ビルド出力ディレクトリは空欄のままにするか、`.open-next`を指定してください。Cloudflare Pages が自動的に検出します。
 
 4. **互換性フラグの設定（重要）**
 
