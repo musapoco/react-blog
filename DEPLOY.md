@@ -1,32 +1,40 @@
 # Cloudflare Pages デプロイガイド
 
-このプロジェクトをCloudflare Pagesでデプロイする手順です。
+このプロジェクトを Cloudflare Pages でデプロイする手順です。
 
 ## デプロイ方法
 
-### 方法1: Cloudflare Dashboard（推奨）
+### 方法 1: Cloudflare Dashboard（推奨）
 
-1. **Gitリポジトリにプッシュ**
-   - このプロジェクトをGitHub/GitLab/Bitbucketにプッシュ
+1. **Git リポジトリにプッシュ**
 
-2. **Cloudflare Dashboardで設定**
+   - このプロジェクトを GitHub/GitLab/Bitbucket にプッシュ
+
+2. **Cloudflare Dashboard で設定**
+
    - [Cloudflare Dashboard](https://dash.cloudflare.com/)にログイン
    - 「Workers & Pages」→「Create application」→「Pages」→「Connect to Git」を選択
    - リポジトリを選択
 
 3. **ビルド設定**
-   - **Framework preset**: Next.js（自動検出される場合があります）
+
+   - **Framework preset**: None（または Next.js を選択した場合は上書き）
    - **Build command**: `npm run build:cloudflare`
-   - **Build output directory**: `.vercel/output/static`
+   - **Build output directory**: `.vercel/output/static`（または空欄のまま）
    - **Root directory**: `/`（デフォルト）
+   - **Deploy command**: （空欄のまま、または削除）
+
+   ⚠️ **重要**: `@cloudflare/next-on-pages`は非推奨になりましたが、現在は動作します。
+   将来的には OpenNext adapter への移行を検討してください。
 
 4. **環境変数（必要な場合）**
+
    - 「Settings」→「Environment variables」から設定
 
 5. **デプロイ**
    - 「Save and Deploy」をクリック
 
-### 方法2: Wrangler CLI
+### 方法 2: Wrangler CLI
 
 ```bash
 # Wranglerをインストール（初回のみ）
@@ -44,11 +52,11 @@ npx wrangler pages deploy .vercel/output/static
 
 ## ビルドコマンドの説明
 
-- `npm run build:cloudflare`: Next.jsをビルドし、Cloudflare Pages用に変換します
+- `npm run build:cloudflare`: Next.js をビルドし、Cloudflare Pages 用に変換します
 
 ## 注意事項
 
-- Node.jsのバージョン: Cloudflare PagesはNode.js 18.x以上を推奨
+- Node.js のバージョン: Cloudflare Pages は Node.js 18.x 以上を推奨
 - ビルド時間: 初回ビルドは数分かかる場合があります
 - 環境変数: 機密情報は環境変数として設定してください
 
@@ -57,6 +65,7 @@ npx wrangler pages deploy .vercel/output/static
 ### ビルドエラーが発生する場合
 
 1. ローカルでビルドをテスト:
+
    ```bash
    npm run build:cloudflare
    ```
@@ -70,5 +79,4 @@ npx wrangler pages deploy .vercel/output/static
 ### デプロイ後、ページが表示されない場合
 
 - ビルド出力ディレクトリが正しいか確認（`.vercel/output/static`）
-- Cloudflare Dashboardのビルドログを確認
-
+- Cloudflare Dashboard のビルドログを確認
