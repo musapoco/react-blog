@@ -27,11 +27,19 @@
    ⚠️ **重要**: `@cloudflare/next-on-pages`は非推奨になりましたが、現在は動作します。
    将来的には OpenNext adapter への移行を検討してください。
 
-4. **環境変数（必要な場合）**
+4. **互換性フラグの設定（重要）**
+
+   - 「Settings」→「Runtime」→「Compatibility flags」を開く
+   - 「Select...」フィールドをクリック
+   - `nodejs_compat` を追加（または `nodejs_compat_populate_process_env` を試す）
+   - 「Save」をクリック
+   - ⚠️ **重要**: Next.js 16.x を使用している場合、このフラグは必須です
+
+5. **環境変数（必要な場合）**
 
    - 「Settings」→「Environment variables」から設定
 
-5. **デプロイ**
+6. **デプロイ**
    - 「Save and Deploy」をクリック
 
 ### 方法 2: Wrangler CLI
