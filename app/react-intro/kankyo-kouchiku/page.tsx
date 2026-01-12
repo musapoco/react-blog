@@ -1,13 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
+import CopyableCodeBlock from "@/app/components/CopyableCodeBlock";
 
 export default function KankyoKouchikuPage() {
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Navigation */}
@@ -147,9 +143,7 @@ export default function KankyoKouchikuPage() {
                 <p className="mb-2">
                   ターミナル（Mac）またはコマンドプロンプト（Windows）を開いて、以下のコマンドを入力します：
                 </p>
-                <div className="rounded-md bg-gray-900 p-4 font-mono text-sm text-gray-100 dark:bg-gray-800">
-                  <code>node --version</code>
-                </div>
+                <CopyableCodeBlock code="node --version" />
                 <p className="mt-2 text-sm">
                   バージョン番号が表示されれば、インストールは成功です（例: v20.11.0）。
                 </p>
@@ -193,14 +187,14 @@ export default function KankyoKouchikuPage() {
             </div>
           </section>
 
-          {/* Create React App */}
+          {/* Create React Project with Vite */}
           <section className="mb-12">
             <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-              Step 3: Reactプロジェクトの作成
+              Step 3: React + Viteプロジェクトの作成
             </h2>
             <div className="space-y-4 text-gray-700 dark:text-gray-300">
               <p>
-                Reactの開発を始めるには、プロジェクトを作成する必要があります。Create React Appというツールを使うと、簡単にReactプロジェクトを作成できます。
+                Reactの開発を始めるには、プロジェクトを作成する必要があります。Vite（ヴィート）という高速なビルドツールを使うと、簡単にReactプロジェクトを作成できます。
               </p>
               <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
                 <p className="font-medium text-gray-900 dark:text-white mb-2">
@@ -209,22 +203,38 @@ export default function KankyoKouchikuPage() {
                 <p className="mb-3">
                   ターミナルまたはコマンドプロンプトで、プロジェクトを作成したいフォルダに移動して、以下のコマンドを実行します：
                 </p>
-                <div className="rounded-md bg-gray-900 p-4 font-mono text-sm text-gray-100 dark:bg-gray-800 mb-3">
-                  <code>npx create-react-app my-app</code>
-                </div>
+                <CopyableCodeBlock code="npm create vite@latest my-app" className="mb-3" />
                 <p className="mb-3 text-sm">
                   <strong>注意:</strong> 「my-app」はプロジェクト名です。好きな名前に変更できます（日本語やスペースは使わないようにしてください）。
                 </p>
-                <p className="text-sm">
-                  このコマンドを実行すると、必要なファイルが自動的にダウンロードされ、プロジェクトが作成されます。数分かかる場合があります。
+                <p className="mb-3 text-sm">
+                  コマンドを実行すると、いくつかの質問が表示されます：
+                </p>
+                <ol className="ml-4 space-y-2 list-decimal mb-3 text-sm">
+                  <li>
+                    <strong>Select a framework:</strong> 矢印キーで <code>React</code> を選択してEnterキーを押します
+                  </li>
+                  <li>
+                    <strong>Select a variant:</strong> 矢印キーで <code>JavaScript</code> または <code>TypeScript</code> を選択してEnterキーを押します（初心者の方はJavaScriptがおすすめです）
+                  </li>
+                </ol>
+                <p className="mb-3 text-sm">
+                  選択が完了すると、プロジェクトフォルダが作成されます。次に、プロジェクトフォルダに移動して、必要なライブラリをインストールします：
+                </p>
+                <div className="space-y-2">
+                  <CopyableCodeBlock code="cd my-app" />
+                  <CopyableCodeBlock code="npm install" />
+                </div>
+                <p className="mt-3 text-sm">
+                  <code>npm install</code> コマンドは、プロジェクトに必要なライブラリをダウンロードします。少し時間がかかる場合があります。
                 </p>
               </div>
               <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
                 <p className="font-medium text-blue-900 dark:text-blue-100 mb-2">
-                  💡 npxとは？
+                  💡 Viteとは？
                 </p>
                 <p className="text-sm text-blue-800 dark:text-blue-200">
-                  npxは、Node.jsと一緒にインストールされるツールです。create-react-appをダウンロードせずに、直接実行できます。
+                  Viteは、Reactアプリケーションを高速に開発できるツールです。従来のツールよりも起動が速く、変更の反映も早いのが特徴です。モダンなReact開発ではViteが主流になっています。
                 </p>
               </div>
             </div>
@@ -246,16 +256,9 @@ export default function KankyoKouchikuPage() {
                 <p className="mb-3">
                   ターミナルまたはコマンドプロンプトで、プロジェクトフォルダに移動して、以下のコマンドを実行します：
                 </p>
-                <div className="space-y-2">
-                  <div className="rounded-md bg-gray-900 p-4 font-mono text-sm text-gray-100 dark:bg-gray-800">
-                    <code>cd my-app</code>
-                  </div>
-                  <div className="rounded-md bg-gray-900 p-4 font-mono text-sm text-gray-100 dark:bg-gray-800">
-                    <code>npm start</code>
-                  </div>
-                </div>
+                <CopyableCodeBlock code="npm run dev" />
                 <p className="mt-3 text-sm">
-                  コマンドを実行すると、自動的にブラウザが開き、http://localhost:3000 でReactアプリケーションが表示されます。
+                  コマンドを実行すると、ターミナルに表示されるURL（例: http://localhost:5173）にアクセスすると、Reactアプリケーションが表示されます。Viteは高速に起動するため、すぐにブラウザで確認できます。
                 </p>
               </div>
               <div className="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-900/20">
@@ -263,7 +266,7 @@ export default function KankyoKouchikuPage() {
                   ✅ 成功の確認
                 </p>
                 <p className="text-sm text-green-800 dark:text-green-200">
-                  ブラウザにReactのロゴが回転する画面が表示されれば、環境構築は成功です！
+                  ブラウザに「Vite + React」という文字と、カウントアップするボタンが表示されれば、環境構築は成功です！
                 </p>
               </div>
             </div>
@@ -281,24 +284,29 @@ export default function KankyoKouchikuPage() {
               <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
                 <ul className="space-y-3">
                   <li>
-                    <strong className="text-gray-900 dark:text-white">src/App.js</strong>
+                    <strong className="text-gray-900 dark:text-white">src/App.jsx</strong>
                     <br />
                     <span className="text-sm">メインのコンポーネントファイルです。ここにコードを書いていきます。</span>
                   </li>
                   <li>
-                    <strong className="text-gray-900 dark:text-white">src/index.js</strong>
+                    <strong className="text-gray-900 dark:text-white">src/main.jsx</strong>
                     <br />
                     <span className="text-sm">Reactアプリケーションのエントリーポイント（起点）です。通常は変更しません。</span>
                   </li>
                   <li>
-                    <strong className="text-gray-900 dark:text-white">public/index.html</strong>
+                    <strong className="text-gray-900 dark:text-white">index.html</strong>
                     <br />
-                    <span className="text-sm">HTMLファイルです。ReactアプリケーションがこのHTMLに表示されます。</span>
+                    <span className="text-sm">HTMLファイルです。ReactアプリケーションがこのHTMLに表示されます。Viteでは、プロジェクトのルートフォルダにあります。</span>
                   </li>
                   <li>
                     <strong className="text-gray-900 dark:text-white">package.json</strong>
                     <br />
                     <span className="text-sm">プロジェクトの設定ファイルです。使用しているライブラリの情報が記載されています。</span>
+                  </li>
+                  <li>
+                    <strong className="text-gray-900 dark:text-white">vite.config.js</strong>
+                    <br />
+                    <span className="text-sm">Viteの設定ファイルです。通常は変更する必要はありません。</span>
                   </li>
                 </ul>
               </div>
@@ -324,7 +332,7 @@ export default function KankyoKouchikuPage() {
               </div>
               <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
                 <p className="font-medium text-gray-900 dark:text-white mb-2">
-                  ❌ 「create-react-app コマンドが実行できない」
+                  ❌ 「npm create vite コマンドが実行できない」
                 </p>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
                   インターネット接続を確認してください。また、管理者権限でターミナル/コマンドプロンプトを実行してみてください。
@@ -332,10 +340,10 @@ export default function KankyoKouchikuPage() {
               </div>
               <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
                 <p className="font-medium text-gray-900 dark:text-white mb-2">
-                  ❌ 「ポート3000が既に使用されています」
+                  ❌ 「ポート5173が既に使用されています」
                 </p>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  別のReactアプリケーションが既に起動している可能性があります。他のターミナルウィンドウで実行中のアプリを停止するか、ブラウザで http://localhost:3000 にアクセスして確認してください。
+                  別のViteアプリケーションが既に起動している可能性があります。他のターミナルウィンドウで実行中のアプリを停止するか、Viteは自動的に別のポート（5174など）を使用します。
                 </p>
               </div>
             </div>
@@ -353,7 +361,7 @@ export default function KankyoKouchikuPage() {
               <ul className="ml-6 space-y-2 list-disc">
                 <li>Node.jsをインストールしました</li>
                 <li>テキストエディタ（VS Code）を準備しました</li>
-                <li>Create React Appを使ってプロジェクトを作成しました</li>
+                <li>Viteを使ってReactプロジェクトを作成しました</li>
                 <li>開発サーバーを起動して、Reactアプリケーションを確認しました</li>
               </ul>
               <p>
@@ -363,18 +371,24 @@ export default function KankyoKouchikuPage() {
           </section>
 
           {/* Navigation */}
-          <div className="flex items-center justify-between border-t border-gray-200 pt-8 dark:border-gray-800">
+          <div className="grid grid-cols-3 items-center gap-4 border-t border-gray-200 pt-8 dark:border-gray-800">
             <Link
               href="/react-intro/react-toha"
-              className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+              className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 whitespace-nowrap"
             >
               ← 前のレッスン: Reactとは
             </Link>
             <Link
               href="/react-intro"
-              className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+              className="justify-self-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 whitespace-nowrap"
             >
               レッスン一覧に戻る
+            </Link>
+            <Link
+              href="/react-intro/jsx-kiso"
+              className="justify-self-end rounded-lg bg-gray-900 px-6 py-3 text-base font-medium text-white transition-all hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 whitespace-nowrap"
+            >
+              次のレッスン: JSXの基礎 →
             </Link>
           </div>
         </div>

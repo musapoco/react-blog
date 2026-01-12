@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 
 interface Lesson {
@@ -31,6 +30,7 @@ const lessons: Lesson[] = [
     title: "JSXの基礎",
     description: "JSXの書き方とルールを理解する",
     duration: "20分",
+    slug: "/react-intro/jsx-kiso",
   },
   {
     id: 4,
@@ -53,10 +53,6 @@ const lessons: Lesson[] = [
 ];
 
 export default function ReactIntroPage() {
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, []);
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       {/* Navigation */}
