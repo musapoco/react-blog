@@ -26,7 +26,7 @@ export default function CopyableCodeBlock({
   return (
     <div className={`relative group ${className}`}>
       <div className="rounded-md bg-gray-900 p-4 font-mono text-sm text-gray-100 dark:bg-gray-800">
-        <code>{code}</code>
+        <code className="whitespace-pre">{code}</code>
       </div>
       <button
         onClick={handleCopy}

@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import CopyableCodeBlock from "@/app/components/CopyableCodeBlock";
-import EditableCodeBlock from "@/app/components/EditableCodeBlock";
+import InteractiveProductList from "@/app/components/InteractiveProductList";
+import InteractiveChapterList from "@/app/components/InteractiveChapterList";
+import InteractiveFrameworkList from "@/app/components/InteractiveFrameworkList";
+import InteractiveAgeDisplay from "@/app/components/InteractiveAgeDisplay";
+import InteractiveMultiplication from "@/app/components/InteractiveMultiplication";
+import InteractiveFullName from "@/app/components/InteractiveFullName";
+import InteractiveTimeGreeting from "@/app/components/InteractiveTimeGreeting";
+import InteractiveErrorMessage from "@/app/components/InteractiveErrorMessage";
+import InteractiveScoreEvaluation from "@/app/components/InteractiveScoreEvaluation";
 
 export default function JsxKisoPage() {
   return (
@@ -99,7 +107,21 @@ export default function JsxKisoPage() {
                   📝 簡単な例
                 </p>
                 <CopyableCodeBlock code='const element = <h1>こんにちは、世界！</h1>;' />
-                <p className="mt-2 text-sm text-blue-800 dark:text-blue-200">
+                <div className="mt-4 rounded-lg bg-white border border-blue-300 p-4 dark:bg-gray-800 dark:border-blue-700">
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">このコードが表示される結果：</p>
+                  <div className="border-l-4 border-blue-500 pl-3">
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">こんにちは、世界！</h1>
+                  </div>
+                </div>
+                <div className="mt-3 p-3 rounded bg-blue-100/50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800">
+                  <p className="text-xs font-semibold text-blue-900 dark:text-blue-100 mb-2">💡 コードの構造：</p>
+                  <ul className="text-xs text-blue-800 dark:text-blue-200 space-y-1 list-disc list-inside">
+                    <li><code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">const element</code>：JSX要素を保存する変数</li>
+                    <li><code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">&lt;h1&gt;</code>：見出しタグ（HTMLと同じ）</li>
+                    <li><code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">こんにちは、世界！</code>：表示されるテキスト</li>
+                  </ul>
+                </div>
+                <p className="mt-3 text-sm text-blue-800 dark:text-blue-200">
                   これはJSXの最も簡単な例です。HTMLのように見えますが、実際にはJavaScriptのコードです。
                 </p>
               </div>
@@ -121,7 +143,11 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       あなたの名前を表示するJSX要素を作成してください。h2タグを使って「こんにちは、[あなたの名前]です」と表示するコードを書いてみましょう。
                     </p>
-                    <EditableCodeBlock code='const introduction = <h2>こんにちは、山田太郎です</h2>;' placeholder="<h2>こんにちは、[あなたの名前]です</h2>;" />
+                    <CopyableCodeBlock code='const introduction = <h2>こんにちは、山田太郎です</h2>;' />
+                    <div className="mt-3 rounded-lg bg-gray-50 border border-green-200 p-3 dark:bg-gray-800 dark:border-green-800">
+                      <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                      <h2 className="text-xl font-bold text-gray-900 dark:text-white">こんにちは、山田太郎です</h2>
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -131,7 +157,11 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       好きな言葉やメッセージをpタグ（段落）で表示するJSX要素を作成してください。「Reactを学んでいます」というメッセージを表示してみましょう。
                     </p>
-                    <EditableCodeBlock code='const message = <p>Reactを学んでいます</p>;' placeholder="<p>Reactを学んでいます</p>;" />
+                    <CopyableCodeBlock code='const message = <p>Reactを学んでいます</p>;' />
+                    <div className="mt-3 rounded-lg bg-gray-50 border border-green-200 p-3 dark:bg-gray-800 dark:border-green-800">
+                      <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                      <p className="text-gray-900 dark:text-white">Reactを学んでいます</p>
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -141,7 +171,20 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       divタグを使って、h1タグとpタグを1つの要素にまとめてください。タイトルと説明文を含むJSXを作成しましょう。
                     </p>
-                    <EditableCodeBlock code={`const content = (\n  <div>\n    <h1>React学習</h1>\n    <p>JSXの基礎を学んでいます</p>\n  </div>\n);`} placeholder="<div>\n  <h1>タイトル</h1>\n  <p>説明文</p>\n</div>" />
+                    <CopyableCodeBlock code={`const content = (\n  <div>\n    <h1>React学習</h1>\n    <p>JSXの基礎を学んでいます</p>\n  </div>\n);`} />
+                    <div className="mt-3 rounded-lg bg-gray-50 border border-green-200 p-3 dark:bg-gray-800 dark:border-green-800">
+                      <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                      <div className="border-l-4 border-green-500 pl-3 space-y-2">
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">React学習</h1>
+                        <p className="text-gray-900 dark:text-white">JSXの基礎を学んでいます</p>
+                      </div>
+                    </div>
+                    <div className="mt-3 p-3 rounded bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                      <p className="text-xs font-semibold text-green-900 dark:text-green-100 mb-2">💡 ポイント：</p>
+                      <p className="text-xs text-green-800 dark:text-green-200">
+                        <code className="bg-green-200 dark:bg-green-800 px-1 rounded">&lt;div&gt;</code>タグで複数の要素を1つにまとめています。JSXでは1つの要素しか返せないため、このようにdivで囲む必要があります。
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -187,7 +230,11 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       「おはようございます」と表示するGreetingコンポーネントを作成してください。
                     </p>
-                    <EditableCodeBlock code={`const Greeting = () => {\n  return <h1>おはようございます</h1>;\n}`} placeholder="<h1>おはようございます</h1>;" />
+                    <CopyableCodeBlock code={`const Greeting = () => {\n  return <h1>おはようございます</h1>;\n}`} />
+                    <div className="mt-3 rounded-lg bg-gray-50 border border-green-200 p-3 dark:bg-gray-800 dark:border-green-800">
+                      <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">おはようございます</h1>
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -197,7 +244,11 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       pタグを使って「今日は良い天気です」という説明文を返すDescriptionコンポーネントを作成してください。
                     </p>
-                    <EditableCodeBlock code={`const Description = () => {\n  return <p>今日は良い天気です</p>;\n}`} placeholder="<p>今日は良い天気です</p>;" />
+                    <CopyableCodeBlock code={`const Description = () => {\n  return <p>今日は良い天気です</p>;\n}`} />
+                    <div className="mt-3 rounded-lg bg-gray-50 border border-green-200 p-3 dark:bg-gray-800 dark:border-green-800">
+                      <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                      <p className="text-gray-900 dark:text-white">今日は良い天気です</p>
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -207,7 +258,14 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       divタグの中にh2タグとpタグを含むCardコンポーネントを作成してください。タイトルと本文を表示する構造にしましょう。
                     </p>
-                    <EditableCodeBlock code={`const Card = () => {\n  return (\n    <div>\n      <h2>カードタイトル</h2>\n      <p>カードの内容です</p>\n    </div>\n  );\n}`} placeholder="<div>\n  <h2>カードタイトル</h2>\n  <p>カードの内容です</p>\n</div>" />
+                    <CopyableCodeBlock code={`const Card = () => {\n  return (\n    <div>\n      <h2>カードタイトル</h2>\n      <p>カードの内容です</p>\n    </div>\n  );\n}`} />
+                    <div className="mt-3 rounded-lg bg-gray-50 border border-green-200 p-3 dark:bg-gray-800 dark:border-green-800">
+                      <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                      <div className="border-l-4 border-green-500 pl-3 space-y-2">
+                        <h2 className="text-xl font-bold text-gray-900 dark:text-white">カードタイトル</h2>
+                        <p className="text-gray-900 dark:text-white">カードの内容です</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -227,8 +285,30 @@ export default function JsxKisoPage() {
                 <p className="mb-3 text-sm">
                   JSXは必ず1つの親要素で囲む必要があります。複数の要素を返したい場合は、&lt;div&gt;や&lt;&gt;（フラグメント）で囲みます。
                 </p>
-                <CopyableCodeBlock code={`return (\n  <h1>タイトル</h1>\n  <p>説明</p>\n);`} className="mb-2" />
-                <CopyableCodeBlock code={`return (\n  <div>\n    <h1>タイトル</h1>\n    <p>説明</p>\n  </div>\n);`} />
+                <div className="mb-4">
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-red-600 dark:text-red-400 font-semibold">❌ 間違った例</span>
+                    </div>
+                    <CopyableCodeBlock code={`return (\n  <h1>タイトル</h1>\n  <p>説明</p>\n);`} />
+                    <div className="mt-2 p-2 rounded bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                      <p className="text-xs text-red-800 dark:text-red-200">
+                        <strong>エラー：</strong>複数の要素を返そうとしているため、エラーが発生します。JSXでは1つの親要素で囲む必要があります。
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-green-600 dark:text-green-400 font-semibold">✅ 正しい例</span>
+                    </div>
+                    <CopyableCodeBlock code={`return (\n  <div>\n    <h1>タイトル</h1>\n    <p>説明</p>\n  </div>\n);`} />
+                    <div className="mt-2 p-2 rounded bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                      <p className="text-xs text-green-800 dark:text-green-200">
+                        <strong>ポイント：</strong><code className="bg-green-200 dark:bg-green-800 px-1 rounded">&lt;div&gt;</code>で複数の要素を1つにまとめています。これで正しく動作します。
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
@@ -238,8 +318,30 @@ export default function JsxKisoPage() {
                 <p className="mb-3 text-sm">
                   HTMLではclass属性を使いますが、JSXではclassNameを使います（classはJavaScriptの予約語のため）。
                 </p>
-                <CopyableCodeBlock code='<div class="container">...</div>' className="mb-2" />
-                <CopyableCodeBlock code='<div className="container">...</div>' />
+                <div className="mb-4">
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-red-600 dark:text-red-400 font-semibold">❌ 間違った例</span>
+                    </div>
+                    <CopyableCodeBlock code='<div class="container">...</div>' />
+                    <div className="mt-2 p-2 rounded bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                      <p className="text-xs text-red-800 dark:text-red-200">
+                        <strong>エラー：</strong>JSXでは<code className="bg-red-200 dark:bg-red-800 px-1 rounded">class</code>は使用できません。JavaScriptの予約語のため、<code className="bg-red-200 dark:bg-red-800 px-1 rounded">className</code>を使う必要があります。
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-green-600 dark:text-green-400 font-semibold">✅ 正しい例</span>
+                    </div>
+                    <CopyableCodeBlock code='<div className="container">...</div>' />
+                    <div className="mt-2 p-2 rounded bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                      <p className="text-xs text-green-800 dark:text-green-200">
+                        <strong>ポイント：</strong><code className="bg-green-200 dark:bg-green-800 px-1 rounded">className</code>を使うことで、正しくスタイルが適用されます。
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
@@ -249,8 +351,30 @@ export default function JsxKisoPage() {
                 <p className="mb-3 text-sm">
                   JSXでは、すべてのタグを閉じる必要があります。&lt;br&gt;や&lt;img&gt;のような自己終了タグも、&lt;br /&gt;や&lt;img /&gt;のように書きます。
                 </p>
-                <CopyableCodeBlock code={`<br>\n<img src="image.jpg">`} className="mb-2" />
-                <CopyableCodeBlock code={`<br />\n<img src="image.jpg" />`} />
+                <div className="mb-4">
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-red-600 dark:text-red-400 font-semibold">❌ 間違った例</span>
+                    </div>
+                    <CopyableCodeBlock code={`<br>\n<img src="image.jpg">`} />
+                    <div className="mt-2 p-2 rounded bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                      <p className="text-xs text-red-800 dark:text-red-200">
+                        <strong>エラー：</strong>JSXではすべてのタグを閉じる必要があります。<code className="bg-red-200 dark:bg-red-800 px-1 rounded">&lt;br&gt;</code>や<code className="bg-red-200 dark:bg-red-800 px-1 rounded">&lt;img&gt;</code>のような自己終了タグも、必ず<code className="bg-red-200 dark:bg-red-800 px-1 rounded">/&gt;</code>で閉じる必要があります。
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-green-600 dark:text-green-400 font-semibold">✅ 正しい例</span>
+                    </div>
+                    <CopyableCodeBlock code={`<br />\n<img src="image.jpg" />`} />
+                    <div className="mt-2 p-2 rounded bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                      <p className="text-xs text-green-800 dark:text-green-200">
+                        <strong>ポイント：</strong>自己終了タグは<code className="bg-green-200 dark:bg-green-800 px-1 rounded">/&gt;</code>で閉じることで、正しく動作します。
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
@@ -260,8 +384,30 @@ export default function JsxKisoPage() {
                 <p className="mb-3 text-sm">
                   HTML属性の一部は、JSXではキャメルケース（単語の最初を大文字にする）で書きます。例: tabindex → tabIndex, onclick → onClick
                 </p>
-                <CopyableCodeBlock code='<div tabindex="0">...</div>' className="mb-2" />
-                <CopyableCodeBlock code='<div tabIndex="0">...</div>' />
+                <div className="mb-4">
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-red-600 dark:text-red-400 font-semibold">❌ 間違った例</span>
+                    </div>
+                    <CopyableCodeBlock code='<div tabindex="0">...</div>' />
+                    <div className="mt-2 p-2 rounded bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                      <p className="text-xs text-red-800 dark:text-red-200">
+                        <strong>エラー：</strong>HTMLでは<code className="bg-red-200 dark:bg-red-800 px-1 rounded">tabindex</code>ですが、JSXでは<code className="bg-red-200 dark:bg-red-800 px-1 rounded">tabIndex</code>のようにキャメルケース（大文字で始まる単語）で書く必要があります。
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-green-600 dark:text-green-400 font-semibold">✅ 正しい例</span>
+                    </div>
+                    <CopyableCodeBlock code='<div tabIndex="0">...</div>' />
+                    <div className="mt-2 p-2 rounded bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                      <p className="text-xs text-green-800 dark:text-green-200">
+                        <strong>ポイント：</strong>JSXでは属性名をキャメルケースで書くことで、正しく動作します。他にも<code className="bg-green-200 dark:bg-green-800 px-1 rounded">onclick → onClick</code>、<code className="bg-green-200 dark:bg-green-800 px-1 rounded">onchange → onChange</code>などがあります。
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -280,7 +426,17 @@ export default function JsxKisoPage() {
                   📝 変数を埋め込む
                 </p>
                 <CopyableCodeBlock code={`const Welcome = () => {\n  const name = "太郎";\n  return <h1>こんにちは、{name}さん！</h1>;\n}`} className="mb-3" />
-                <p className="text-sm">
+                <div className="mt-3 rounded-lg bg-gray-50 border border-gray-300 p-3 dark:bg-gray-800 dark:border-gray-700">
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white">こんにちは、太郎さん！</h1>
+                </div>
+                <div className="mt-3 p-3 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                  <p className="text-xs font-semibold text-blue-900 dark:text-blue-100 mb-2">💡 ポイント：</p>
+                  <p className="text-xs text-blue-800 dark:text-blue-200">
+                    <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">{`{name}`}</code>の部分で、変数<code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">name</code>の値（&quot;太郎&quot;）が表示されます。
+                  </p>
+                </div>
+                <p className="mt-3 text-sm">
                   このコードは、&quot;こんにちは、太郎さん！&quot;と表示します。
                 </p>
               </div>
@@ -289,7 +445,17 @@ export default function JsxKisoPage() {
                   📝 式を埋め込む
                 </p>
                 <CopyableCodeBlock code={`const Calculation = () => {\n  const a = 5;\n  const b = 3;\n  return <p>{a} + {b} = {a + b}</p>;\n}`} className="mb-3" />
-                <p className="text-sm">
+                <div className="mt-3 rounded-lg bg-gray-50 border border-gray-300 p-3 dark:bg-gray-800 dark:border-gray-700">
+                  <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2">表示結果：</p>
+                  <p className="text-gray-900 dark:text-white">5 + 3 = 8</p>
+                </div>
+                <div className="mt-3 p-3 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                  <p className="text-xs font-semibold text-blue-900 dark:text-blue-100 mb-2">💡 ポイント：</p>
+                  <p className="text-xs text-blue-800 dark:text-blue-200">
+                    <code className="bg-blue-200 dark:bg-blue-800 px-1 rounded">{`{a + b}`}</code>のように、中括弧内で計算式を書くと、計算結果が表示されます。
+                  </p>
+                </div>
+                <p className="mt-3 text-sm">
                   このコードは、&quot;5 + 3 = 8&quot;と表示します。
                 </p>
               </div>
@@ -311,7 +477,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       年齢を変数として定義し、「私は[年齢]歳です」と表示するコンポーネントを作成してください。年齢は20として定義しましょう。
                     </p>
-                    <EditableCodeBlock code={`const AgeDisplay = () => {\n  const age = 20;\n  return <p>私は{age}歳です</p>;\n}`} placeholder="<p>私は{age}歳です</p>;" />
+                    <CopyableCodeBlock code={`const AgeDisplay = () => {\n  const age = 20;\n  return <p>私は{age}歳です</p>;\n}`} />
+                    <div className="mt-4">
+                      <InteractiveAgeDisplay />
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -321,7 +490,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       2つの数値（10と5）を定義し、その掛け算の結果を表示するコンポーネントを作成してください。「10 × 5 = 50」のように表示しましょう。
                     </p>
-                    <EditableCodeBlock code={`const Multiplication = () => {\n  const num1 = 10;\n  const num2 = 5;\n  return <p>{num1} × {num2} = {num1 * num2}</p>;\n}`} placeholder="<p>{num1} × {num2} = {num1 * num2}</p>;" />
+                    <CopyableCodeBlock code={`const Multiplication = () => {\n  const num1 = 10;\n  const num2 = 5;\n  return <p>{num1} × {num2} = {num1 * num2}</p>;\n}`} />
+                    <div className="mt-4">
+                      <InteractiveMultiplication />
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -331,7 +503,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       姓と名を別々の変数として定義し、フルネームを表示するコンポーネントを作成してください。姓は「山田」、名は「花子」としましょう。
                     </p>
-                    <EditableCodeBlock code={`const FullName = () => {\n  const lastName = "山田";\n  const firstName = "花子";\n  return <h2>{lastName}{firstName}</h2>;\n}`} placeholder="<h2>{lastName}{firstName}</h2>;" />
+                    <CopyableCodeBlock code={`const FullName = () => {\n  const lastName = "山田";\n  const firstName = "花子";\n  return <h2>{lastName}{firstName}</h2>;\n}`} />
+                    <div className="mt-4">
+                      <InteractiveFullName />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -383,7 +558,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       時間帯（午前か午後か）を判定し、午前なら「おはようございます」、午後なら「こんにちは」と表示するコンポーネントを作成してください。isMorningという変数を使ってみましょう。
                     </p>
-                    <EditableCodeBlock code={`const TimeGreeting = () => {\n  const isMorning = true;\n  return (\n    <div>\n      {isMorning ? <h1>おはようございます</h1> : <h1>こんにちは</h1>}\n    </div>\n  );\n}`} placeholder="<div>\n  {isMorning ? <h1>おはようございます</h1> : <h1>こんにちは</h1>}\n</div>" />
+                    <CopyableCodeBlock code={`const TimeGreeting = () => {\n  const isMorning = true;\n  return (\n    <div>\n      {isMorning ? <h1>おはようございます</h1> : <h1>こんにちは</h1>}\n    </div>\n  );\n}`} />
+                    <div className="mt-4">
+                      <InteractiveTimeGreeting />
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -393,7 +571,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       hasErrorという変数がtrueの場合のみ、「エラーが発生しました」というメッセージを表示するコンポーネントを作成してください。&&演算子を使いましょう。
                     </p>
-                    <EditableCodeBlock code={`const ErrorMessage = () => {\n  const hasError = true;\n  return (\n    <div>\n      {hasError && <p className="text-red-500">エラーが発生しました</p>}\n    </div>\n  );\n}`} placeholder='<div>\n  {hasError && <p className="text-red-500">エラーが発生しました</p>}\n</div>' />
+                    <CopyableCodeBlock code={`const ErrorMessage = () => {\n  const hasError = true;\n  return (\n    <div>\n      {hasError && <p className="text-red-500">エラーが発生しました</p>}\n    </div>\n  );\n}`} />
+                    <div className="mt-4">
+                      <InteractiveErrorMessage />
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -403,7 +584,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       点数（score）が80以上なら「優秀」、60以上なら「合格」、それ以外なら「不合格」と表示するコンポーネントを作成してください。ネストした三項演算子を使ってみましょう。
                     </p>
-                    <EditableCodeBlock code={`const ScoreEvaluation = () => {\n  const score = 85;\n  return (\n    <div>\n      <p>点数: {score}点</p>\n      <p>\n        評価: {score >= 80 ? '優秀' : score >= 60 ? '合格' : '不合格'}\n      </p>\n    </div>\n  );\n}`} placeholder="<div>\n  <p>点数: {score}点</p>\n  <p>評価: {score >= 80 ? '優秀' : score >= 60 ? '合格' : '不合格'}</p>\n</div>" />
+                    <CopyableCodeBlock code={`const ScoreEvaluation = () => {\n  const score = 85;\n  return (\n    <div>\n      <p>点数: {score}点</p>\n      <p>\n        評価: {score >= 80 ? '優秀' : score >= 60 ? '合格' : '不合格'}\n      </p>\n    </div>\n  );\n}`} />
+                    <div className="mt-4">
+                      <InteractiveScoreEvaluation />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -454,7 +638,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       「パン」「牛乳」「卵」という商品名の配列を作成し、それらをリストとして表示するコンポーネントを作成してください。
                     </p>
-                    <EditableCodeBlock code={`const ProductList = () => {\n  const products = ["パン", "牛乳", "卵"];\n  return (\n    <ul>\n      {products.map((product, index) => (\n        <li key={index}>{product}</li>\n      ))}\n    </ul>\n  );\n}`} placeholder="<ul>\n  {products.map((product, index) => (\n    <li key={index}>{product}</li>\n  ))}\n</ul>" />
+                    <CopyableCodeBlock code={`const ProductList = () => {\n  const products = ["パン", "牛乳", "卵"];\n  return (\n    <ul>\n      {products.map((product, index) => (\n        <li key={index}>{product}</li>\n      ))}\n    </ul>\n  );\n}`} />
+                    <div className="mt-4">
+                      <InteractiveProductList />
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -464,7 +651,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       「第1章」「第2章」「第3章」というタイトルの配列を作成し、番号と一緒に表示するコンポーネントを作成してください。各項目に番号も表示しましょう。
                     </p>
-                    <EditableCodeBlock code={`const ChapterList = () => {\n  const chapters = ["第1章", "第2章", "第3章"];\n  return (\n    <ol>\n      {chapters.map((chapter, index) => (\n        <li key={index}>{chapter}: JSXの基礎</li>\n      ))}\n    </ol>\n  );\n}`} placeholder="<ol>\n  {chapters.map((chapter, index) => (\n    <li key={index}>{chapter}: JSXの基礎</li>\n  ))}\n</ol>" />
+                    <CopyableCodeBlock code={`const ChapterList = () => {\n  const chapters = ["第1章", "第2章", "第3章"];\n  return (\n    <ol>\n      {chapters.map((chapter, index) => (\n        <li key={index}>{chapter}: JSXの基礎</li>\n      ))}\n    </ol>\n  );\n}`} />
+                    <div className="mt-4">
+                      <InteractiveChapterList />
+                    </div>
                   </div>
 
                   <div className="rounded-lg border border-green-300 bg-white p-4 dark:border-green-700 dark:bg-gray-900">
@@ -474,7 +664,10 @@ export default function JsxKisoPage() {
                     <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                       「React」「Vue」「Angular」というフレームワーク名の配列を作成し、それぞれをdivタグで囲んでカードのように表示するコンポーネントを作成してください。
                     </p>
-                    <EditableCodeBlock code={`const FrameworkList = () => {\n  const frameworks = ["React", "Vue", "Angular"];\n  return (\n    <div>\n      {frameworks.map((framework, index) => (\n        <div key={index} className="card">\n          <h3>{framework}</h3>\n        </div>\n      ))}\n    </div>\n  );\n}`} placeholder='<div>\n  {frameworks.map((framework, index) => (\n    <div key={index} className="card">\n      <h3>{framework}</h3>\n    </div>\n  ))}\n</div>' />
+                    <CopyableCodeBlock code={`const FrameworkList = () => {\n  const frameworks = ["React", "Vue", "Angular"];\n  return (\n    <div>\n      {frameworks.map((framework, index) => (\n        <div key={index} className="card">\n          <h3>{framework}</h3>\n        </div>\n      ))}\n    </div>\n  );\n}`} />
+                    <div className="mt-4">
+                      <InteractiveFrameworkList />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -518,7 +711,12 @@ export default function JsxKisoPage() {
             >
               レッスン一覧に戻る
             </Link>
-            <div></div>
+            <Link
+              href="/react-intro/komponente-sakusei"
+              className="justify-self-end rounded-lg bg-gray-900 px-6 py-3 text-base font-medium text-white transition-all hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 whitespace-nowrap"
+            >
+              次のレッスン: コンポーネントの作成 →
+            </Link>
           </div>
         </div>
       </article>

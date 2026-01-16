@@ -37,6 +37,7 @@ const lessons: Lesson[] = [
     title: "コンポーネントの作成",
     description: "関数コンポーネントとクラスコンポーネント",
     duration: "25分",
+    slug: "/react-intro/komponente-sakusei",
   },
   {
     id: 5,
