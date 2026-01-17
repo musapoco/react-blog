@@ -1,6 +1,6 @@
 # Cloudflare Pages デプロイガイド
 
-このプロジェクトは OpenNext アダプターを使用して Cloudflare Pages にデプロイします。
+このプロジェクトは `@cloudflare/next-on-pages` を使用して Cloudflare Pages にデプロイします。
 
 ## デプロイ方法
 
@@ -20,7 +20,7 @@
 
    - **Framework preset**: None（または Next.js を選択した場合は上書き）
    - **Build command**: `npm run build:cloudflare`
-   - **Build output directory**: `.vercel/output/static`
+   - **Build output directory**: `.vercel/output`
    - **Root directory**: `/`（デフォルト）
 
 4. **互換性フラグの設定（重要）**
@@ -50,12 +50,13 @@ wrangler login
 npm run build:cloudflare
 
 # デプロイ
-npx wrangler pages deploy .open-next/cloudflare --project-name=your-project-name
+npx wrangler pages deploy .vercel/output --project-name=react-blog
 ```
 
 ## ビルドコマンドの説明
 
-- `npm run build:cloudflare`: OpenNext アダプターを使用して Next.js アプリを Cloudflare Pages 用にビルドします
+- `npm run build:cloudflare`: `@cloudflare/next-on-pages` を使用して Next.js アプリを Cloudflare Pages 用にビルドします
+- ビルド出力は `.vercel/output` ディレクトリに生成されます
 
 ## 注意事項
 
@@ -81,13 +82,16 @@ npx wrangler pages deploy .open-next/cloudflare --project-name=your-project-name
 
 ### デプロイ後、ページが表示されない場合
 
-- ビルド出力ディレクトリが正しいか確認（`.open-next/cloudflare`）
+- ビルド出力ディレクトリが正しいか確認（`.vercel/output`）
 - Cloudflare Dashboard のビルドログを確認
 - 互換性フラグが正しく設定されているか確認
+- GitHub連携が正しく機能しているか確認（Builds → Manage under Git Repository）
+- ブラウザキャッシュやCloudflare CDNキャッシュをクリア
 
-## OpenNext アダプターについて
+## @cloudflare/next-on-pages について
 
-このプロジェクトは `@opennextjs/cloudflare` を使用しています。これは `@cloudflare/next-on-pages` の後継として推奨されています。
+このプロジェクトは `@cloudflare/next-on-pages` を使用してNext.jsアプリをCloudflare Pagesで実行します。
 
-- **設定ファイル**: `open-next.config.ts`
-- **ビルド出力**: `.open-next/cloudflare`
+- **設定ファイル**: `wrangler.toml`
+- **ビルド出力**: `.vercel/output`
+- **互換性フラグ**: `nodejs_compat` が必要

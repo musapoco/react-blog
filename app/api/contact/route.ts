@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Resendクライアントの初期化
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Resendクライアントの初期化（APIキーが存在する場合のみ）
+const getResend = () => {
+  const apiKey = process.env.RESEND_API_KEY;
+  return apiKey ? new Resend(apiKey) : null;
+};
 
 // メールアドレスのバリデーション
 function isValidEmail(email: string): boolean {
@@ -32,7 +35,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Resend APIキーの確認
-    if (!process.env.RESEND_API_KEY) {
+    const resend = getResend();
+    if (!resend || !process.env.RESEND_API_KEY) {
       console.error("RESEND_API_KEYが設定されていません");
       // 開発環境ではコンソールに出力して続行
       console.log("=== お問い合わせ受信（メール送信スキップ）===");
