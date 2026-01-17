@@ -14,49 +14,49 @@ interface Lesson {
 const lessons: Lesson[] = [
   {
     id: 1,
-    title: "Reactとは",
-    description: "Reactの基本概念と特徴について学びます",
-    duration: "10分",
-    slug: "/react-intro/react-toha",
+    title: "useStateの基礎",
+    description: "コンポーネントの状態を管理するuseStateフックの使い方",
+    duration: "25分",
+    slug: "/state-management/use-state",
   },
   {
     id: 2,
-    title: "環境構築",
-    description: "React開発環境のセットアップ方法",
-    duration: "15分",
-    slug: "/react-intro/kankyo-kouchiku",
+    title: "useEffectの基礎",
+    description: "副作用処理を実行するuseEffectフックの基本",
+    duration: "25分",
+    slug: "#",
   },
   {
     id: 3,
-    title: "JSXの基礎",
-    description: "JSXの書き方とルールを理解する",
-    duration: "20分",
-    slug: "/react-intro/jsx-kiso",
+    title: "useEffectの応用",
+    description: "依存配列とクリーンアップ関数を使った実践的な使い方",
+    duration: "25分",
+    slug: "#",
   },
   {
     id: 4,
-    title: "コンポーネントの作成",
-    description: "関数コンポーネントとクラスコンポーネント",
+    title: "複数の状態管理",
+    description: "複数のuseStateを使った状態管理の方法",
     duration: "25分",
-    slug: "/react-intro/komponente-sakusei",
+    slug: "#",
   },
   {
     id: 5,
-    title: "propsの使い方",
-    description: "コンポーネント間でデータを渡す方法",
-    duration: "20分",
-    slug: "/react-intro/props-no-tsukaikata",
+    title: "状態の更新パターン",
+    description: "状態を更新する様々な方法とベストプラクティス",
+    duration: "25分",
+    slug: "#",
   },
   {
     id: 6,
-    title: "イベントハンドリング",
-    description: "ユーザーインタラクションの処理方法",
-    duration: "20分",
-    slug: "/react-intro/ibento-handoring",
+    title: "カスタムフック",
+    description: "再利用可能なカスタムフックの作成方法",
+    duration: "25分",
+    slug: "#",
   },
 ];
 
-export default function ReactIntroPage() {
+export default function StateManagementPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <Header />
@@ -85,14 +85,14 @@ export default function ReactIntroPage() {
           </Link>
           <div className="mb-4 flex items-center gap-3">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-              React入門
+              状態管理
             </h1>
             <span className="flex-shrink-0 rounded-lg bg-gray-100 px-3 py-1 text-xs font-semibold tracking-wide text-gray-700 dark:bg-gray-800 dark:text-gray-300">
               初級
             </span>
           </div>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            Reactの基本概念、JSX、コンポーネントの作成方法を学びます
+            useState、useEffect、カスタムフックを使った状態管理を習得します
           </p>
         </div>
       </section>
@@ -128,7 +128,7 @@ export default function ReactIntroPage() {
                       <span className="text-sm font-medium text-gray-500 dark:text-gray-500">
                         {lesson.duration}
                       </span>
-                      {lesson.slug ? (
+                      {lesson.slug && lesson.slug !== "#" ? (
                         <Link
                           href={lesson.slug}
                           className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 transition-all hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
@@ -136,8 +136,8 @@ export default function ReactIntroPage() {
                           開始
                         </Link>
                       ) : (
-                        <button className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 transition-all hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
-                          開始
+                        <button className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 transition-all hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 opacity-50 cursor-not-allowed">
+                          準備中
                         </button>
                       )}
                     </div>
@@ -163,3 +163,4 @@ export default function ReactIntroPage() {
     </div>
   );
 }
+
