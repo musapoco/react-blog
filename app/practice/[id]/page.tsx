@@ -12,6 +12,8 @@ import JsxMultipleElementsDiagram from "@/app/components/JsxMultipleElementsDiag
 import JsxHtmlComparisonDiagram from "@/app/components/JsxHtmlComparisonDiagram";
 import { practiceProblems, PracticeProblem } from "@/app/data/practiceProblems";
 
+export const runtime = 'edge';
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
