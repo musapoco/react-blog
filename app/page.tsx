@@ -4,6 +4,8 @@ import { useState } from "react";
 import Header from "@/app/components/Header";
 import Image from "next/image";
 import Link from "next/link";
+import CopyableCodeBlock from "@/app/components/CopyableCodeBlock";
+import { practiceProblems, PracticeProblem } from "@/app/data/practiceProblems";
 
 interface Module {
   id: number;
@@ -79,6 +81,54 @@ const difficultyLabels = {
 
 export default function HomePage() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [showSolution, setShowSolution] = useState<{ [key: number]: boolean }>({});
+  const [selectedDifficulty, setSelectedDifficulty] = useState<"beginner" | "intermediate" | "advanced" | null>(null);
+  const [selectedProblemId, setSelectedProblemId] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const PROBLEMS_PER_PAGE = 5;
+
+  // フィルターされた問題を取得
+  const filteredProblems = selectedDifficulty
+    ? practiceProblems.filter((problem) => problem.difficulty === selectedDifficulty)
+    : practiceProblems;
+
+  // 現在のページに表示する問題を取得
+  const startIndex = currentPage * PROBLEMS_PER_PAGE;
+  const endIndex = startIndex + PROBLEMS_PER_PAGE;
+  const displayedProblems = filteredProblems.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filteredProblems.length / PROBLEMS_PER_PAGE);
+
+  // 選択された問題を取得
+  const selectedProblem = selectedProblemId
+    ? practiceProblems.find((problem) => problem.id === selectedProblemId)
+    : null;
+
+  // 問題がフィルターされたとき、選択中の問題もフィルターされていたら選択を解除
+  const handleDifficultyChange = (difficulty: "beginner" | "intermediate" | "advanced" | null) => {
+    setSelectedDifficulty(difficulty);
+    setCurrentPage(0); // 難易度が変わったら最初のページに戻す
+    if (selectedProblemId) {
+      const currentProblem = practiceProblems.find((p) => p.id === selectedProblemId);
+      if (currentProblem && difficulty && currentProblem.difficulty !== difficulty) {
+        setSelectedProblemId(null);
+      }
+    }
+  };
+
+  // 次のページへ
+  const handleNextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  // 前のページへ
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -192,6 +242,188 @@ export default function HomePage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Practice Problems Section */}
+      <section id="practice" className="border-t border-gray-200 bg-white px-4 py-20 dark:border-gray-800 dark:bg-gray-900 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 text-center">
+            <h2 className="mb-3 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+              練習問題
+            </h2>
+            <p className="mb-8 text-gray-600 dark:text-gray-400">
+              実際にコードを書いて、Reactの理解を深めましょう
+            </p>
+
+            {/* 難易度フィルタータグ */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <button
+                onClick={() => handleDifficultyChange(null)}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
+                  selectedDifficulty === null
+                    ? "bg-gray-900 text-white shadow-md dark:bg-gray-100 dark:text-gray-900"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                }`}
+              >
+                全て
+              </button>
+              <button
+                onClick={() => handleDifficultyChange("beginner")}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
+                  selectedDifficulty === "beginner"
+                    ? `${difficultyColors.beginner} shadow-md ring-2 ring-gray-400 dark:ring-gray-600`
+                    : `${difficultyColors.beginner} hover:opacity-80`
+                }`}
+              >
+                {difficultyLabels.beginner}
+              </button>
+              <button
+                onClick={() => handleDifficultyChange("intermediate")}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
+                  selectedDifficulty === "intermediate"
+                    ? `${difficultyColors.intermediate} shadow-md ring-2 ring-gray-400 dark:ring-gray-600`
+                    : `${difficultyColors.intermediate} hover:opacity-80`
+                }`}
+              >
+                {difficultyLabels.intermediate}
+              </button>
+              <button
+                onClick={() => handleDifficultyChange("advanced")}
+                className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
+                  selectedDifficulty === "advanced"
+                    ? `${difficultyColors.advanced} shadow-md ring-2 ring-gray-400 dark:ring-gray-600`
+                    : `${difficultyColors.advanced} hover:opacity-80`
+                }`}
+              >
+                {difficultyLabels.advanced}
+              </button>
+            </div>
+          </div>
+
+          {/* 左側: 問題リスト、右側: 問題詳細 */}
+          <div className="grid gap-6 lg:grid-cols-[400px_1fr]">
+            {/* 左側: 問題リスト */}
+            <div>
+              {filteredProblems.length === 0 ? (
+                <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center dark:border-gray-800 dark:bg-gray-800/50">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    選択した難易度の問題はありません
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div className="space-y-3 mb-4">
+                    {displayedProblems.map((problem) => (
+                      <button
+                        key={problem.id}
+                        onClick={() => setSelectedProblemId(problem.id)}
+                        className={`w-full rounded-lg border p-4 text-left transition-all cursor-pointer ${
+                          selectedProblemId === problem.id
+                            ? "border-blue-500 bg-blue-50 shadow-md dark:border-blue-400 dark:bg-blue-900/20"
+                            : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm dark:border-gray-800 dark:bg-gray-800/50 dark:hover:border-gray-700"
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1">
+                            <div className="mb-1 flex items-center gap-2">
+                              <span className="text-lg">📝</span>
+                              <h4 className="font-semibold text-gray-900 dark:text-white">
+                                {problem.title}
+                              </h4>
+                            </div>
+                            <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+                              {problem.description}
+                            </p>
+                          </div>
+                          <span
+                            className={`flex-shrink-0 rounded-lg px-2 py-1 text-xs font-semibold tracking-wide ${
+                              difficultyColors[problem.difficulty]
+                            }`}
+                          >
+                            {difficultyLabels[problem.difficulty]}
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* ページネーション */}
+                  {filteredProblems.length > PROBLEMS_PER_PAGE && (
+                    <div className="flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-800">
+                      <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 0}
+                        className={`rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
+                          currentPage === 0
+                            ? "cursor-not-allowed bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-600"
+                            : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                        }`}
+                      >
+                        前の5問
+                      </button>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                        {currentPage + 1} / {totalPages}
+                      </span>
+                      <button
+                        onClick={handleNextPage}
+                        disabled={currentPage >= totalPages - 1}
+                        className={`rounded-lg px-4 py-2 text-sm font-semibold transition-all ${
+                          currentPage >= totalPages - 1
+                            ? "cursor-not-allowed bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-600"
+                            : "bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                        }`}
+                      >
+                        次の5問
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+
+            {/* 右側: 選択した問題の詳細 */}
+            <div className="min-h-[400px]">
+              {selectedProblem && (
+                <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-sm dark:border-gray-800 dark:bg-gray-800/50">
+                  {/* Header */}
+                  <div className="mb-6 flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+                        {selectedProblem.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                        {selectedProblem.description}
+                      </p>
+                    </div>
+                    <span
+                      className={`flex-shrink-0 rounded-lg px-3 py-1 text-xs font-semibold tracking-wide ${
+                        difficultyColors[selectedProblem.difficulty]
+                      }`}
+                    >
+                      {difficultyLabels[selectedProblem.difficulty]}
+                    </span>
+                  </div>
+
+                  {/* Challenge Code */}
+                  <div className="mb-4">
+                    <p className="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      📝 問題
+                    </p>
+                    <CopyableCodeBlock code={selectedProblem.challengeCode} />
+                  </div>
+
+                  {/* 解答を見るボタン - 解答ページに遷移 */}
+                  <Link
+                    href={`/practice/${selectedProblem.id}`}
+                    className="block w-full mb-4 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white text-center transition-all hover:bg-blue-700 active:scale-[0.98] dark:bg-blue-700 dark:hover:bg-blue-600"
+                  >
+                    解答を見る
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
