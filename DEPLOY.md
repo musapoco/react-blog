@@ -20,7 +20,7 @@
 
    - **Framework preset**: None（または Next.js を選択した場合は上書き）
    - **Build command**: `npm run build:cloudflare`
-   - **Build output directory**: `.vercel/output`
+   - **Build output directory**: `.vercel/output/static`
    - **Root directory**: `/`（デフォルト）
 
 4. **互換性フラグの設定（重要）**
