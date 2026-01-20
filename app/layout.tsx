@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "React Learning - モダンなReact学習サイト",
   description:
     "Reactを基礎から学べるモダンな学習サイト。実践的なチュートリアルとインタラクティブな例でReactをマスターしましょう。",
+  verification: {
+    google: "VDF_1o2uWdYxUVIf8Q5aW92HMpbGEDlPsg6uPdOCmro",
+  },
 };
 
 export default function RootLayout({
