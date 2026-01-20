@@ -24,28 +24,28 @@ const lessons: Lesson[] = [
     title: "useEffectの基礎",
     description: "副作用処理を実行するuseEffectフックの基本",
     duration: "25分",
-    slug: "#",
+    slug: "/state-management/use-effect-basic",
   },
   {
     id: 3,
     title: "useEffectの応用",
     description: "依存配列とクリーンアップ関数を使った実践的な使い方",
     duration: "25分",
-    slug: "#",
+    slug: "/state-management/use-effect-advanced",
   },
   {
     id: 4,
     title: "複数の状態管理",
     description: "複数のuseStateを使った状態管理の方法",
     duration: "25分",
-    slug: "#",
+    slug: "/state-management/multiple-state",
   },
   {
     id: 5,
     title: "状態の更新パターン",
     description: "状態を更新する様々な方法とベストプラクティス",
-    duration: "25分",
-    slug: "#",
+    duration: "30分",
+    slug: "/state-management/state-update-patterns",
   },
   {
     id: 6,
@@ -131,7 +131,7 @@ export default function StateManagementPage() {
                       {lesson.slug && lesson.slug !== "#" ? (
                         <Link
                           href={lesson.slug}
-                          className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 transition-all hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                          className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700 no-underline transition-all hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
                         >
                           開始
                         </Link>

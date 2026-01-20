@@ -428,9 +428,12 @@ const decrement = () => {
             >
               レッスン一覧に戻る
             </Link>
-            <div className="text-right text-sm text-gray-500 dark:text-gray-400">
-              次のレッスン: useEffectの基礎
-            </div>
+            <Link
+              href="/state-management/use-effect-basic"
+              className="justify-self-end rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 whitespace-nowrap"
+            >
+              次のレッスン: useEffectの基礎 →
+            </Link>
           </div>
         </div>
       </article>
