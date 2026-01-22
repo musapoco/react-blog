@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "React Learning - モダンなReact学習サイト",
+  title: "React初心者サイト",
   description:
     "Reactを基礎から学べるモダンな学習サイト。実践的なチュートリアルとインタラクティブな例でReactをマスターしましょう。",
   verification: {
